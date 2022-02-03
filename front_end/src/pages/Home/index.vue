@@ -4,7 +4,7 @@
             <q-card class="my-card col-xs-12 col-sm-10 col-md-10" >
                
                 <q-card-section class="bg-black text-white">
-                    <div class="text-h6 text-center">Bienvenido</div> 
+                    <div class="text-h6 text-center">Welcome</div> 
                 </q-card-section>
 
             </q-card>

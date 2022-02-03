@@ -1,11 +1,17 @@
 <template>
-    <q-layout>
+    <q-layout style="background: #c1c1c1;">
         <div class="row justify-center container-login">
             <q-card class="login">
                 <q-card-section>
                     <ValidationObserver ref="form" >
+                        
+                        <div class="row justify-center">
+                            <div class="col-4 text-center">
+                                <img width="100%" src="~assets/img/login/logo.png" /> 
+                            </div> 
+                        </div>
 
-                        <div class="text-center text-h5 q-my-md">Bienvenido</div>
+                        <div class="text-center text-h5 q-my-md">Welcome</div>
 
                         <ValidationProvider rules="required|email" v-slot="{ errors, invalid, validated }">
                             <q-input  
@@ -48,7 +54,7 @@
                         </ValidationProvider> 
                         
                         <div class="text-center q-py-lg"> 
-                            <q-btn color="primary" class="full-width" flat label="Sign In" @click="login"/>
+                            <q-btn color="primary" class="full-width" label="Sign In" @click="login"/>
                         </div>
                     </ValidationObserver> 
                 </q-card-section>

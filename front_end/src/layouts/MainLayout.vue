@@ -1,10 +1,10 @@
 <template>
-    <q-layout view="hhh LpR fFf">
+    <q-layout view="hhh LpR fFf" style="background: #ededed;">
         <q-header elevated class="bg-blue-grey-8">
             <q-toolbar>
                 <q-btn flat dense round icon="menu" aria-label="Menu" @click="leftDrawerOpen = !leftDrawerOpen" />
                 <q-toolbar-title>
-                    Front
+                    Airport
                 </q-toolbar-title>
                  
                 {{ $auth.user.name }}
@@ -65,12 +65,12 @@ export default {
                     route_name : 'home'
                 },
                 {
-                    icon : 'folder',
+                    icon : 'flight_takeoff',
                     name : 'Airports',
                     route_name : 'airports'
                 },
                 {
-                    icon : 'folder',
+                    icon : 'business',
                     name : 'Airlines',
                     route_name : 'airlines'
                 },
@@ -81,7 +81,7 @@ export default {
         if( this.$auth.user.role.name == 'admin'){
             this.modules.push(
                 {
-                    icon : 'folder',
+                    icon : 'flight',
                     name : 'Flights',
                     route_name : 'flights'
                 }

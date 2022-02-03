@@ -18,7 +18,7 @@
 - Dentro del folder ejecutar ***npm install***
 - Crear una copia del .env.example que se encuentra dentro del forder llamado **front_end**
 - Agregar en el campo ***API_SERVE*** la ruta del back y en ***PORT*** el puerto.
-    *ejemplo usando laragon*
+-**ejemplo usando laragon**
     API_SERVE=http://3hbs_test.test
     PORT=80
 - ejecutar ***quasar dev***

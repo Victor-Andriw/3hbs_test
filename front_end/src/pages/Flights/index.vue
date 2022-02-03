@@ -1,11 +1,11 @@
 <template>
     <div class="q-pa-md">
-        <q-card>
+        <q-card v-if="permissions('get flights')">
             <q-card-section>
                 <div class="row justify-between">
                     <div class="col-auto text-h5">List of flights</div> 
-                    <div class="col-xs-12 col-sm-3 col-md-2">
-                        <q-btn color="blue-grey-8 full-width" icon="add" label="Add" @click="open()" > <q-tooltip>Add flights</q-tooltip> </q-btn>
+                    <div class="col-xs-12 col-sm-3 col-md-2" v-if="permissions('create flights')">
+                        <q-btn color="blue-grey-8 full-width" icon="add" label="Add" @click="open()"> <q-tooltip>Add flights</q-tooltip> </q-btn>
                     </div>
                 </div>
             </q-card-section>
@@ -16,12 +16,12 @@
                         <div class="text-center">
                             <div>
                                 <q-fab text-color="blue-grey-13" icon="more_vert" direction="left" padding="xs" unelevated>
-                                    <q-fab-action padding="5px" color="primary" icon="edit" @click="open(row)">
+                                    <q-fab-action padding="5px" color="primary" icon="edit" @click="open(row)" v-if="permissions('edit flights')">
                                         <q-tooltip anchor="top middle" self="bottom middle">
                                             Edit
                                         </q-tooltip>
                                     </q-fab-action>
-                                    <q-fab-action padding="5px" color="red" icon="delete" @click="itemDelete(row)">
+                                    <q-fab-action padding="5px" color="red" icon="delete" @click="itemDelete(row)" v-if="permissions('delete flights')">
                                         <q-tooltip anchor="top middle" self="bottom middle">
                                             Delete
                                         </q-tooltip>
@@ -58,7 +58,14 @@
                 </server-table>
             </q-card-section>
         </q-card>
-        <formulario :form="form" :close="close" :title_form="title_form" v-if="show_form" /> 
+        <q-card v-else>
+            <q-card-section>
+                <div class="row justify-between">
+                    <div class="col-auto text-h5">You don't have permissions</div> 
+                </div>
+            </q-card-section>
+         </q-card>
+        <formulario :form="form" :close="close" :title_form="title_form" v-if="show_form" />
     </div>
 </template>
 
@@ -90,9 +97,6 @@
                 show_form : false,
             }
         },
-        mounted(){
-
-        }, 
         methods : {
             open(item){ 
                 this.title_form = (item !== undefined) ? 'Edit flight' : 'New flight'; 
@@ -122,6 +126,18 @@
                 this.$q.notify({ position:'top', type:'positive', message:'Success' });
 
                 this.close();
+            },
+            async permissions(name){
+
+                let status = false;
+                await this.$auth.user.role.permissions.forEach(element => { 
+                    if(name == element.name){
+                        return true;
+                    }else{
+                        status = false;
+                    }
+                });
+                return status
             }
         }
     }
