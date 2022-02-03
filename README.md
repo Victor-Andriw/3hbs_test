@@ -10,30 +10,24 @@
 # Instrucciones
 ## Back
 
-- Clonar el repositorio y crear uno nuevo en su cuenta personal
-- BACK: **NOTA** todos los servicios deben de manejarse por medio de una api
-- Crear Servicios para login
-- Crear un crud de airports con los siguientes campos: **name**, **code**, **city**
-- Crear un crud de airlines con los siguientes campos: **name**, **code**
-- Crear un crud de flights con los siguientes campos: **code**, **type**, **departure_id**, **destination_id**, **departure_time**, **arrival_time**, **airline_id**
-- Relaciones De flights son: **departure_id** y **destination_id** a **airports** y **airline_id** a **airline**
-- Para el campo **type** dentro Flights crear un **Enum** con los siguientes valores (PASSENGER, FREIGHT)
-- Implementar **[Laravel Permision](https://spatie.be/docs/laravel-permission/v4/introduction)**
-- Crear permisos de view, create, update, delete de cada modelo creado
-- Crear dos roles, admin y operations
-- Definir una Policy para Flights para manejar los permisos de view flights, view flight, create flight, update flight
-- Asignar al rol de administrador por medio de un seeder, el permiso de view flight, create flight, update flight, delete flight
-- Validar que solo un usuario con rol el administrador pueda ver y crear y editar flights
-
-### Puntos extras: 
-- Implementar modelo polimórfico de Remarks (libre definición) y relacionar con modelos creados
-
+- ejecutar ***composer install***
+- ejecutar ***php artisan migrate --seed***
+ 
 ## Front
-- FRONT: Usar Vue para la lógica, (Se permite usar Bootstrap, Vuetify o Quasar para diseño)
-- Implementar Login
-- Implementar CRUD de Airports, consumiendo API de back
-- Implementar CRUD de Airlines, consumiendo API de back
-- Implementar CRUD de Flights, consumiendo API de back
+- acceder al forder llamado **front_end**
+- Dentro del folder ejecutar ***npm install***
+- Crear una copia del .env.example que se encuentra dentro del forder llamado **front_end**
+- Agregar en el campo ***API_SERVE*** la ruta del back y en ***PORT*** el puerto.
+    *ejemplo usando laragon*
+    API_SERVE=http://3hbs_test.test
+    PORT=80
+- ejecutar ***quasar dev***
 
-### Puntos extras: 
-- Implementar modelo polimórfico de Remarks y relacionar con modelos creados
+## Credenciales
+**Admin**
+correo: victorchichale@mail.com
+password: password
+
+**Operations**
+correo: operations@mail.com
+password: password

@@ -48,7 +48,7 @@
                         </ValidationProvider> 
                         
                         <div class="text-center q-py-lg"> 
-                            <q-btn color="primary" class="full-width" flat label="Iniciar sesión" @click="login"/>
+                            <q-btn color="primary" class="full-width" flat label="Sign In" @click="login"/>
                         </div>
                     </ValidationObserver> 
                 </q-card-section>

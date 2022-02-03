@@ -9,11 +9,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Models\RolModules;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class LoginController extends Controller
 {
     //
-    public function authenticate(Request $request)
+    function authenticate(Request $request)
     {
         try { 
        
@@ -34,11 +36,18 @@ class LoginController extends Controller
         }
     }  
 
-    public function logout(Request $request)
+    function logout(Request $request)
     {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return [ 'status' => true];
-    } 
+    }
+
+    function getUser(Request $request){
+        $user = $request->user();
+        $role = Role::with('permissions')->where('name', $user->getRoleNames()[0])->first(); 
+        $user->role = $role;
+        return $user;
+    }
 }

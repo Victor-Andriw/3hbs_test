@@ -22,7 +22,7 @@ Route::post('/auth/login', [LoginController::class, 'authenticate']);
 Route::post('/auth/logout', [LoginController::class, 'logout']);
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/user', function (Request $request) { return $request->user(); });
+    Route::get('/user',  [LoginController::class, 'getUser']);
 
     Route::prefix('airports')->group(function () {
         Route::get('/get-list', [AirportsController::class, 'getAirports']);

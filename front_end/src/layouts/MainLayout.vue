@@ -20,7 +20,7 @@
                     <q-menu>
                         <q-list style="min-width: 200px">
                             <q-item clickable v-close-popup @click="logout()">
-                                <q-item-section>Cerrar sesión</q-item-section>
+                                <q-item-section>Sign out</q-item-section>
                             </q-item>
                         </q-list>
                     </q-menu>
@@ -74,12 +74,18 @@ export default {
                     name : 'Airlines',
                     route_name : 'airlines'
                 },
+            ],
+        }
+    },
+    mounted(){
+        if( this.$auth.user.role.name == 'admin'){
+            this.modules.push(
                 {
                     icon : 'folder',
                     name : 'Flights',
                     route_name : 'flights'
-                },
-            ],
+                }
+            );
         }
     },
     methods : {
